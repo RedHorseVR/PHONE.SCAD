@@ -1,0 +1,70 @@
+;  IRL FlowCode Version: Version 10.0
+;  c1995-2015: Visual Flow Coder by 2LResearch
+;
+;  File Name : phone.scad.vfc
+;  File Date : 09:55:46 PM - 12:Jan:2025
+
+
+input(include <C:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad> );//
+event(include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad> );//
+event(use <.\Funct Builds\Zipper.scad>);//////FILE:.\Funct Builds\Zipper.scad.vfc
+end();//
+set(R = 7;);//
+set(phoneH  = 8;);//
+
+input(module phone( ) {);//
+branch(difference());//
+path( union() {);//
+process( rounded_box( [71 , 146 , phoneH  ] , R  ););//
+process( translate( [ 20.5 , 50.5,  -2.5 ] )  rounded_box( [29 , 44 , phoneH  + 2  ] , R  ););//
+path(} union() { );//
+bend(} );//
+end( } );//
+process(main( ););//main( true  );
+
+input(module main ( cam= false  ) {);//
+set(DIM = [ 29 , 44 , 12  ] ;);//
+branch(if( cam  ));//
+path( { );//
+branch(difference() {);//
+path(union()  {);//
+process(color("white")  translate( [ -(20.5 + 5) , (50.5 + 5) ,  -2 ] )  rounded_box( DIM , R  ););//
+path(}# union() {);//} union() {
+set(shiftX = 2;);//
+set(shiftY = shiftX;);//
+process(phone(););//
+process(color("white")  translate( [ -(20 - shiftX ) , (50 - shiftY ) ,  -1.9  ] )  rounded_box( DIM ,R   ););//
+process(# translate( [ -(20 - shiftX+1 ) , (50 - shiftY+1 ) ,  -2.8  ] )  rounded_box( DIM ,R   ););//
+process(color("white")  translate( [ -(20 - shiftX ) , (50 - shiftY ) ,  -3  ] )  rounded_box( DIM ,R   ););//
+set();//
+bend(} });//
+path(} else { );//
+branch(difference() {);//
+path(union()  {);//
+process(color("white")  translate( [ -(20.5 + 5) , (50.5 + 5) ,  -2 ] )  rounded_box( DIM , R  ););//
+path(}# union() {);//} union() {
+process(translate( [ 0 , 62 , -4] )  strap( ););//
+set(translate([ 0 , 0 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = 51, h = 5 , center = true ););//
+set(shiftX = 2;);//
+set(shiftY = shiftX;);//
+process(phone(););//
+process(color("white")  translate( [ -(20 - shiftX ) , (50 - shiftY ) ,  4 ] )  rounded_box( DIM ,R  ););//
+set();//
+process(translate( [ -23 , 80, 1.5] ));//
+branch(union());//
+path({);//
+process(rotate( [ 0 ,  0 , 20 ] ));//
+set(box( 13 , 30 , 5 ););//
+bend(} );//
+bend(} });//
+bend( } );//
+end( } );//
+
+
+
+;INSECTA EMBEDDED SESSION INFORMATION
+; 255 16777215 65280 16777088 16711680 13158600 13158600 0 255 255 9895835 6946660 4194304
+;    phone.scad   //   ...
+; notepad.exe
+;INSECTA EMBEDDED ALTSESSION INFORMATION
+; 874 720 2852 1335 37 119   4294966725   4294966783    SCAD.key  0

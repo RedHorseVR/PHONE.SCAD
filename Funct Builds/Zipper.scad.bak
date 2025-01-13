@@ -1,0 +1,38 @@
+module zigzag(N, base_length = 3, height = 3) {
+    path = [[0, 0]]; // Initialize the path array with the starting point
+    for (i = [1:N]) {
+        if (i % 2 == 0) {
+            // Add points for a downward pointing triangle
+            path = concat(path, [[i * base_length, 0]]);
+        } else {
+            // Add points for an upward pointing triangle
+            path = concat(path, [[i * base_length, height]]);
+        }
+		path = concat(path, [[N * base_length, 0]]); // Close the loop
+    }
+
+    
+    // Debugging output
+    echo("------------------------");
+    echo(path);
+    
+    // Create the zigzag pattern
+    linear_extrude(height = 4)
+        polygon(points = path);
+}
+
+// Example usage
+zigzag(10);
+
+
+
+
+
+///////////////////////////////////
+main();
+module main ( ) {
+
+
+}
+
+
