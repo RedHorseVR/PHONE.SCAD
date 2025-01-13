@@ -2,15 +2,15 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : Zipper.scad.vfc
-;  File Date : 12:44:01 AM - 13:Jan:2025
+;  File Date : 02:23:39 PM - 13:Jan:2025
 
 event(include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>);//
 end();//
-process(translate( [ 0 , -10, 0 ] )  strap( 2 , L= 22.5 ););//
-process(translate( [ 0 , 10, 0 ] )  strap( 2 ););//
-process(strap( 2 , L = 21 ););//
+process();//translate( [ 0 , -10, 0 ] )  strap( 2 , L= 22.5 );
+process();//translate( [ 0 , 10, 0 ] )  strap( 2 );
+process(strap( 1.5  ););//
 
-input(module strap( h=5 , L=22  ) {);//module strap( h , L=90  ) {
+input(module strap( h=8 , L=90  ) {);//module strap( h , L=90  ) {
 generic(W=3 ;);//
 branch(difference(){);//
 path(union(){);//
@@ -64,4 +64,4 @@ set();//
 ;    Zipper.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 477 362 1162 1139 12 170   646   74    SCAD.key  0
+; 209 167 960 1013 5 170   524   4294967155    SCAD.key  0

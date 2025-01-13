@@ -1,9 +1,9 @@
 include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>
 
-translate( [ 0 , -10, 0 ] )  strap( 2 , L= 22.5 );
-translate( [ 0 , 10, 0 ] )  strap( 2 );
-strap( 2 , L = 21 );
-module strap( h=5 , L=22  ) {
+
+
+strap( 1.5  );
+module strap( h=8 , L=90  ) {
 	W=3 ;
 	difference(){
 	union(){
@@ -49,5 +49,5 @@ module main ( ) {
 
 
 
-//  Export  Date: 12:44:01 AM - 13:Jan:2025...
+//  Export  Date: 02:23:39 PM - 13:Jan:2025...
 
