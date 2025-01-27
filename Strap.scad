@@ -3,15 +3,20 @@ include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>
 
 
 strap( 1.5  );
-module strap( h=1.5 , L=54  ) {
+module strap( h=1., L=60  ) {
 	W=8 ;
 	difference(){
 	union(){
 		translate( [ L/2 , W/2 , 0 ] )  ridge( h = h ) ;
 		translate( [ L/2+15 , -W/2, 0 ] )  rotate( [0,0,180] ) ridge(h=h) ;
 		box( L + 30 , W  , h );
-		translate( [ -L/2-15 , W/2, 0 ] )  ridge(h=h) ;
-		translate( [ -L/2 , -W/2, 0 ] )  rotate( [0,0,180] ) ridge(h=h) ;
+		
+		
+		translate( [ -L/2 -10 , -W/2, 0 ] )  cylinder( r = 5, h=h) ;
+		translate( [ -L/2 -10 , W/2, 0 ] )  cylinder( r = 5, h=h) ;
+		
+		translate( [ 0 , 0 , -1] )  ring( inner_rad = 19 , wall_thick = 2 , high = h+ 1  );
+		translate( [ 0 , 0 , .0 ] ) cylinder( r= 19 , h = 1  );
 	} #union(){
 		} }
 	}
@@ -49,5 +54,5 @@ module main ( ) {
 
 
 
-//  Export  Date: 03:20:28 PM - 15:Jan:2025...
+//  Export  Date: 03:20:44 PM - 19:Jan:2025...
 

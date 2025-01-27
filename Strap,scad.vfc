@@ -1,8 +1,8 @@
 ;  IRL FlowCode Version: Version 10.0
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
-;  File Name : Zipper.scad.vfc
-;  File Date : 03:20:27 PM - 15:Jan:2025
+;  File Name : Strap,scad.vfc
+;  File Date : 03:20:44 PM - 19:Jan:2025
 
 event(include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>);//
 end();//
@@ -10,15 +10,20 @@ process();//translate( [ 0 , -10, 0 ] )  strap( 2 , L= 22.5 );
 process();//translate( [ 0 , 10, 0 ] )  strap( 2 );
 process(strap( 1.5  ););//
 
-input(module strap( h=1.5 , L=54  ) {);//module strap( h , L=90  ) {
+input(module strap( h=1., L=60  ) {);//module strap( h=1., L=64  ) {
 generic(W=8 ;);//
 branch(difference(){);//
 path(union(){);//
 process(translate( [ L/2 , W/2 , 0 ] )  ridge( h = h ) ;);//
 process(translate( [ L/2+15 , -W/2, 0 ] )  rotate( [0,0,180] ) ridge(h=h) ;);//
 set(box( L + 30 , W  , h ););//
-process(translate( [ -L/2-15 , W/2, 0 ] )  ridge(h=h) ;);//
-process(translate( [ -L/2 , -W/2, 0 ] )  rotate( [0,0,180] ) ridge(h=h) ;);//
+process();//translate( [ -L/2-15 , W/2, 0 ] )  ridge(h=h) ;
+process();//translate( [ -L/2 , -W/2, 0 ] )  rotate( [0,0,180] ) ridge(h=h) ;
+process(translate( [ -L/2 -10 , -W/2, 0 ] )  cylinder( r = 5, h=h) ;);//
+process(translate( [ -L/2 -10 , W/2, 0 ] )  cylinder( r = 5, h=h) ;);//
+set();//
+process(translate( [ 0 , 0 , -1] )  ring( inner_rad = 19 , wall_thick = 2 , high = h+ 1  ););//
+process(translate( [ 0 , 0 , .0 ] ) cylinder( r= 19 , h = 1  ););//
 path( } #union(){);//
 bend(  } });//
 end( });//
@@ -61,7 +66,7 @@ set();//
 
 ;INSECTA EMBEDDED SESSION INFORMATION
 ; 255 16777215 65280 16777088 16711680 13158600 13158600 0 255 255 9895835 6946660 3289650
-;    Zipper.scad   //   ...
+;    Strap.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 209 167 960 1013 6 170   587   4294967157    SCAD.key  0
+; 1916 95 1250 1311 6 170   632   4294967085    SCAD.key  0
