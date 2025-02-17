@@ -2,7 +2,7 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : ChargerBase.scad.vfc
-;  File Date : 02:19:58 AM - 27:Jan:2025
+;  File Date : 09:39:44 PM - 03:Feb:2025
 
 event(include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>);//
 end();//
@@ -42,7 +42,29 @@ process(  box( W+thick*2 , L+thick*2 , 1 ););//translate( [ 0 , 0 , thick] )  bo
 path( } #union(){);//
 bend(  } });//
 end( });//
-process(stand() ;);//
+process(BOOKstand() ;);//
+process();//rotate( [ 180 , 0 , 0 ] )  cover ( );
+
+input(module BOOKstand(  ) {);//
+set(A = 0;);//
+set(Y = 20;);//
+set(Z = -5;);//
+set(R = 3; );//
+set(H = 100;);//
+set(t = 10;);//
+branch(difference(){ );//
+path(union(){ );//
+process(translate( [ 0 , 11, 5 ] )  rotate( [ 0 , 180 , 0 ] )    box( 70 ,50 , 6 ););//  box( W , L , 1 );
+process(translate( [ 0 , 34 , 0 ] )    box( 70 ,4 , 70 ););//  box( W , L , 1 );
+process();//translate( [ 20 , Y, Z ] ) rotate( [-A,0,0] ) wedge(T=t,L=10,h = H );
+process();//translate( [-20 , Y, Z ] ) rotate( [-A,0,0] ) wedge(T=t,L=10,h = H );
+set();//translate([ 20, 8 , 33 ]) rotate([ -30 , 0 , 0 ]) cylinder( r = R, h = H , center = true );
+set();//translate([ -20, 8 , 33 ]) rotate([ -30 , 0 , 0 ]) cylinder( r = R, h = H , center = true );
+path( } #union(){);//
+process(translate( [ 0 , 0 , -1] )  floor() ;);//
+bend(  } } );//
+end(});//////
+process();//stand() ;
 process();//rotate( [ 180 , 0 , 0 ] )  cover ( );
 
 input(module stand(  ) {);//
@@ -80,4 +102,4 @@ set(echo("------------------------"););//
 ;    ChargerBase.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 1142 126 1931 1894 49 200   829   4294965847    SCAD.key  0
+; 963 67 1943 1920 48 200   959   4294965381    SCAD.key  0

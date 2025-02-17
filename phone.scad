@@ -55,6 +55,11 @@ module main ( cam= false  ) {
 		translate( strapLOC  ) rotate([0,0,90]) strap( );
 	} else {
 		}
+	if ( cam )
+	{
+		translate( [ 16 , 53., bumperH - .2    ] )  box( 40 ,3 ,  3.3 );
+	
+		}
 	difference() {
 	union()  {
 		if( cam  )
@@ -68,7 +73,8 @@ module main ( cam= false  ) {
 			translate( [ 0 , 54 , bumperH ] )  box( 78 , 37 , 4 );
 			
 			translate([ -34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
-			translate([ 34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
+			
+			
 		} else {
 			color("white")  translate( BRcornerLOC  )  rounded_box( bumperDIM2 , R  );
 			color("white")  translate( BLcornerLOC  )  rounded_box( bumperDIM2 , R  );
@@ -79,7 +85,7 @@ module main ( cam= false  ) {
 			}
 	} union() {
 		translate( strapLOC  ) rotate([0,0,90]) strap( );
-		# translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=3, h = 15 , center = true );
+		translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=4, h = 15 , center = true );
 		
 		
 		phone();
@@ -95,5 +101,5 @@ module main ( cam= false  ) {
 		translate([ 45 , 0 , -10 ]) rotate([ 0 , LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;
 		} }
 	}
-//  Export  Date: 03:29:08 PM - 19:Jan:2025...
+//  Export  Date: 07:38:56 PM - 16:Feb:2025...
 

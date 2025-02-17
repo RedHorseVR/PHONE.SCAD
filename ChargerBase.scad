@@ -34,7 +34,28 @@ module cover(  ) {
 	} #union(){
 		} }
 	}
-stand() ;
+BOOKstand() ;
+
+module BOOKstand(  ) {
+	A = 0;
+	Y = 20;
+	Z = -5;
+	R = 3;
+	H = 100;
+	t = 10;
+	difference(){
+	union(){
+		translate( [ 0 , 11, 5 ] )  rotate( [ 0 , 180 , 0 ] )    box( 70 ,50 , 6 );
+		translate( [ 0 , 34 , 0 ] )    box( 70 ,4 , 70 );
+		
+		
+		
+		
+	} #union(){
+		translate( [ 0 , 0 , -1] )  floor() ;
+		} }
+	}
+
 
 module stand(  ) {
 	A = -15;
@@ -62,5 +83,5 @@ module usb(  ) {
 
 
 echo("------------------------");
-//  Export  Date: 02:19:58 AM - 27:Jan:2025...
+//  Export  Date: 09:39:44 PM - 03:Feb:2025...
 
