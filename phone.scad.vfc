@@ -2,7 +2,7 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : phone.scad.vfc
-;  File Date : 07:38:56 PM - 16:Feb:2025
+;  File Date : 07:28:31 PM - 20:Feb:2025
 
 
 input(include <C:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>);//
@@ -120,4 +120,4 @@ end( });//
 ;    phone.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 277 416 2263 1037 88 149   4294967262   4294964528    SCAD.key  0
+; 632 313 2665 1655 68 108   726   4294966103    SCAD.key  0

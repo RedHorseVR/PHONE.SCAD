@@ -101,5 +101,5 @@ module main ( cam= false  ) {
 		translate([ 45 , 0 , -10 ]) rotate([ 0 , LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;
 		} }
 	}
-//  Export  Date: 07:38:56 PM - 16:Feb:2025...
+//  Export  Date: 07:28:31 PM - 20:Feb:2025...
 

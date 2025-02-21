@@ -18,23 +18,54 @@ module base(  ) {
 	difference(){
 	union(){
 		box( W+thick*2 , L+thick*2 , 15 + 1 );
-		translate( [ 0 , 0 , 1 ] )  cylinder( r = R+thick/2, h = 15);
+		translate( [ 0 , 0 , 14] )  cylinder( r=49.5, h = 2);
+		
+		translate( [ W/2+1.5 , L/2+1.5 , 0 ] )  cylinder( r=2.4, h =15 );
+		translate( [  -(W/2+1.5) ,  (L/2+1.5) , 0 ] )  cylinder( r=2.4, h =15 );
+		translate( [  -(W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h =15 );
+		translate( [  (W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h =15 );
 	} #union(){
-		box( W , L , D  );
+		translate( [ 0 , 0 , -3] )  box( W , L , D  );
 		cylinder( r = R, h = 15);
 		translate( [ W/2 + 3 , 0 , 0] )  usb();
+		translate( [ 0 , 42, 13.6] )  cylinder( r=5.1, h = 2);
+		translate( [ 0 , -42 , 13.6] )  cylinder( r=5.1, h = 2);
+		
+		translate( [ W/2+1.5 , L/2+1.5 , -17 ] )  cylinder( r=1.3, h = 32);
+		translate( [  -(W/2+1.5) ,  (L/2+1.5) , -17 ] )   cylinder( r=1.3, h = 32);
+		translate( [  -(W/2+1.5) ,  -(L/2+1.5) , -17 ] )cylinder( r=1.3, h = 32);
+		translate( [  (W/2+1.5) ,  -(L/2+1.5) , -17 ] )  cylinder( r=1.3, h =32 );
 		} }
 	}
-
+cover ( );
 module cover(  ) {
 	difference(){
 	union(){
+		T = 2;
 		box( 57.5 , 51.5 , 2 );
-		box( W+thick*2 , L+thick*2 , 1 );
+		box( W+thick*2 , L+thick*2 , T );
+		
+		translate( [ W/2+1.5 , L/2+1.5 , 0 ] )  cylinder( r=2.4, h=T );
+		translate( [  -(W/2+1.5) ,  (L/2+1.5) , 0 ] )  cylinder( r=2.4, h=T );
+		translate( [  -(W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h=T );
+		translate( [  (W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h=T );
 	} #union(){
+		
+		translate( [ W/2+1.5 , L/2+1.5 , -17 ] )  cylinder( r=1.4, h = 32);
+		translate( [  -(W/2+1.5) ,  (L/2+1.5) , -17 ] )   cylinder( r=1.4, h = 32);
+		translate( [  -(W/2+1.5) ,  -(L/2+1.5) , -17 ] )cylinder( r=1.4, h = 32);
+		translate( [  (W/2+1.5) ,  -(L/2+1.5) , -17 ] )  cylinder( r=1.4, h =32 );
+		} }
+	difference(){
+	union(){
+		H = 10;
+		rotate( [ 0 , 0 , 0 ] )  translate( [ 15 , 30 , -48 ] )    box( 5 , 20 , 50 );
+		rotate( [ 0 , 0 , 0 ] )  translate( [ -15 , 30 , -48 ] )    box( 5 , 20 , 50 );
+	} #union(){
+		translate( [ 0 , 28 , -10] )  rotate( [ 70 , 0 , 0 ] )  floor() ;
 		} }
 	}
-BOOKstand() ;
+
 
 module BOOKstand(  ) {
 	A = 0;
@@ -83,5 +114,5 @@ module usb(  ) {
 
 
 echo("------------------------");
-//  Export  Date: 09:39:44 PM - 03:Feb:2025...
+//  Export  Date: 04:13:06 PM - 21:Feb:2025...
 
