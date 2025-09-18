@@ -1,70 +1,62 @@
-include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>
-
-thick = 2;
-
-W = 58 ;
-L = 52;
-D = 10;
-R = 25;
-
-usbL = 20;
-usbD = 6;
-usbW = 14;
+include <..\SCAD_Modules\modules.scad>
 
 
+	thick = 2;
+	t = 3;
+	
+	
+	
+
+	usbL = 10;
+	usbD = 30;
+	usbW = 4;
+	usb = [ usbL , usbD ,  usbW ];
+	
+
+for  (A= [ 0:120:300 ]) {
+	base( A  );
+	}
 
 
-module base(  ) {
+module ballsock(  T = [ 0, 8, 0 ] , R = [ 90, 0, 0 ] ) {
+	translate( [ 0 , 8, 0 ] )  rotate( [90, 0, 0 ])   import( "ball_socket.stl" );
+	}
+translate( [ 50, 0 , 0 ] )
+ballsock();
+module base( A = 0  ) {
+	L = 52;
+	D = 10;
+	H = 10;
+	R = 56.5 / 2 ;
+	W = t + R ;
 	difference(){
 	union(){
-		box( W+thick*2 , L+thick*2 , 15 + 1 );
-		translate( [ 0 , 0 , 14] )  cylinder( r=49.5, h = 2);
-		
-		translate( [ W/2+1.5 , L/2+1.5 , 0 ] )  cylinder( r=2.4, h =15 );
-		translate( [  -(W/2+1.5) ,  (L/2+1.5) , 0 ] )  cylinder( r=2.4, h =15 );
-		translate( [  -(W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h =15 );
-		translate( [  (W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h =15 );
+		rotate( [ 0 , 0 , A ] )   plug( );
+		cylinder( r = W, h = H );
 	} #union(){
-		translate( [ 0 , 0 , -3] )  box( W , L , D  );
-		cylinder( r = R, h = 15);
-		translate( [ W/2 + 3 , 0 , 0] )  usb();
-		translate( [ 0 , 42, 13.6] )  cylinder( r=5.1, h = 2);
-		translate( [ 0 , -42 , 13.6] )  cylinder( r=5.1, h = 2);
+		cylinder( r = R, h = H );
+		translate( [ 0, 30 , H/2-usbW/2 ] )  rounded_box( usb , 1 );
 		
-		translate( [ W/2+1.5 , L/2+1.5 , -17 ] )  cylinder( r=1.3, h = 32);
-		translate( [  -(W/2+1.5) ,  (L/2+1.5) , -17 ] )   cylinder( r=1.3, h = 32);
-		translate( [  -(W/2+1.5) ,  -(L/2+1.5) , -17 ] )cylinder( r=1.3, h = 32);
-		translate( [  (W/2+1.5) ,  -(L/2+1.5) , -17 ] )  cylinder( r=1.3, h =32 );
 		} }
 	}
-cover ( );
-module cover(  ) {
+module plug( pos=[0,0,45]  )  {
+	R = 22/2 ;
+	L = 10;
+	H = 55;
+	ROT= -20 ;
+	ZOF= -5 ;
+	translate( pos  )
 	difference(){
 	union(){
-		T = 2;
-		box( 57.5 , 51.5 , 2 );
-		box( W+thick*2 , L+thick*2 , T );
-		
-		translate( [ W/2+1.5 , L/2+1.5 , 0 ] )  cylinder( r=2.4, h=T );
-		translate( [  -(W/2+1.5) ,  (L/2+1.5) , 0 ] )  cylinder( r=2.4, h=T );
-		translate( [  -(W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h=T );
-		translate( [  (W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h=T );
+		cylinder( r = R+t, h = L );
+		rotate( [ 0, ROT, 0 ])  translate( [ (R+1.5*t) , 0 , -H+L + ZOF ] )  cylinder( r = t, h = H );
 	} #union(){
-		
-		translate( [ W/2+1.5 , L/2+1.5 , -17 ] )  cylinder( r=1.4, h = 32);
-		translate( [  -(W/2+1.5) ,  (L/2+1.5) , -17 ] )   cylinder( r=1.4, h = 32);
-		translate( [  -(W/2+1.5) ,  -(L/2+1.5) , -17 ] )cylinder( r=1.4, h = 32);
-		translate( [  (W/2+1.5) ,  -(L/2+1.5) , -17 ] )  cylinder( r=1.4, h =32 );
-		} }
-	difference(){
-	union(){
-		H = 10;
-		rotate( [ 0 , 0 , 0 ] )  translate( [ 15 , 30 , -48 ] )    box( 5 , 20 , 50 );
-		rotate( [ 0 , 0 , 0 ] )  translate( [ -15 , 30 , -48 ] )    box( 5 , 20 , 50 );
-	} #union(){
-		translate( [ 0 , 28 , -10] )  rotate( [ 70 , 0 , 0 ] )  floor() ;
+		cylinder( r = R, h = L );
 		} }
 	}
+/* ============================================================================= */
+/* ============================================================================= */
+/* ============================================================================= */
 
 
 module BOOKstand(  ) {
@@ -114,5 +106,5 @@ module usb(  ) {
 
 
 echo("------------------------");
-//  Export  Date: 09:20:23 PM - 23:Feb:2025...
+//  Export  Date: 06:34:38 PM - 16:Sep:2025...
 

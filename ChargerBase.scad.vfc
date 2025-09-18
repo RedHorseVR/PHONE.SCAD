@@ -2,77 +2,70 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : ChargerBase.scad.vfc
-;  File Date : 09:20:23 PM - 23:Feb:2025
+;  File Date : 06:34:38 PM - 16:Sep:2025
 
-event(include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>);//
+event(include <..\SCAD_Modules\modules.scad>);//FILE: ..\SCAD_Modules\modules.scad.vfc
 end();//
+branch();//
+path();//
 set(thick = 2;);//
+set(t = 3; );//
 set();//
-set(W = 58 ;);//
+set();//
+set();//
+path();//
+set(usbL = 10;);//
+set(usbD = 30;);//
+set(usbW = 4;);//
+set(usb = [ usbL , usbD ,  usbW ];);//
+bend();//
+end();//
+loop(for  (A= [ 0:120:300 ]) {);//
+process(base( A  ););//
+lend( } );//
+end();//
+
+input(module ballsock(  T = [ 0, 8, 0 ] , R = [ 90, 0, 0 ] ) {);//
+process(translate( [ 0 , 8, 0 ] )  rotate( [90, 0, 0 ])   import( "ball_socket.stl" ););//
+end(} );//
+process(translate( [ 50, 0 , 0 ] ));//
+process(  ballsock(););//
+
+input(module base( A = 0  ) {);// 
 set(L = 52;);//
 set(D = 10;);//
-set(R = 25;);//
-set();//
-set(usbL = 20;);//
-set(usbD = 6;);//
-set(usbW = 14;);//
-process();//translate( [ 0 , -10, 0 ] )  strap( 2 , L= 22.5 );
-process();//translate( [ 0 , 10, 0 ] )  strap( 2 );
-end();//
-process();//base( );
-
-input(module base(  ) {);// 
-branch(difference(){);//
-path(union(){);//
-process(  box( W+thick*2 , L+thick*2 , 15 + 1 ););//translate( [ 0 , 0 , thick] )  box( W+thick*2 , L+thick*2 , D  );
-process(translate( [ 0 , 0 , 14] )  cylinder( r=49.5, h = 2););//
-set();//
-process(translate( [ W/2+1.5 , L/2+1.5 , 0 ] )  cylinder( r=2.4, h =15 ););//screw
-process(translate( [  -(W/2+1.5) ,  (L/2+1.5) , 0 ] )  cylinder( r=2.4, h =15 ););//screw
-process(translate( [  -(W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h =15 ););////
-process(translate( [  (W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h =15 ););////
-path( } #union(){);// } union() {
-process(translate( [ 0 , 0 , -3] )  box( W , L , D  ););//
-set(cylinder( r = R, h = 15););//
-process(translate( [ W/2 + 3 , 0 , 0] )  usb(););//
-process(translate( [ 0 , 42, 13.6] )  cylinder( r=5.1, h = 2););//   magnet
-process(translate( [ 0 , -42 , 13.6] )  cylinder( r=5.1, h = 2););//   magnet
-set();//
-process(translate( [ W/2+1.5 , L/2+1.5 , -17 ] )  cylinder( r=1.3, h = 32););///screw//
-process(translate( [  -(W/2+1.5) ,  (L/2+1.5) , -17 ] )   cylinder( r=1.3, h = 32););///screw//
-process(translate( [  -(W/2+1.5) ,  -(L/2+1.5) , -17 ] )cylinder( r=1.3, h = 32););/////screw//
-process(translate( [  (W/2+1.5) ,  -(L/2+1.5) , -17 ] )  cylinder( r=1.3, h =32 ););///////
-bend(  } });//
-end( });//
-process(cover ( ););//
-
-input(module cover(  ) {);// 
-branch(difference(){);//
-path(union(){);//
-set(T = 2;);//
-process(  box( 57.5 , 51.5 , 2 ););//  box( W , L , 1 );
-process(  box( W+thick*2 , L+thick*2 , T ););//translate( [ 0 , 0 , thick] )  box( W+thick*2 , L+thick*2 , D  );
-set();//
-process(translate( [ W/2+1.5 , L/2+1.5 , 0 ] )  cylinder( r=2.4, h=T ););///screw//
-process(translate( [  -(W/2+1.5) ,  (L/2+1.5) , 0 ] )  cylinder( r=2.4, h=T ););////screw////
-process(translate( [  -(W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h=T ););//////////
-process(translate( [  (W/2+1.5) ,  -(L/2+1.5) , 0 ] )  cylinder( r=2.4, h=T ););//////////
-path( } #union(){);//
-set();//
-process(translate( [ W/2+1.5 , L/2+1.5 , -17 ] )  cylinder( r=1.4, h = 32););//screw
-process(translate( [  -(W/2+1.5) ,  (L/2+1.5) , -17 ] )   cylinder( r=1.4, h = 32););//screw
-process(translate( [  -(W/2+1.5) ,  -(L/2+1.5) , -17 ] )cylinder( r=1.4, h = 32););////screw
-process(translate( [  (W/2+1.5) ,  -(L/2+1.5) , -17 ] )  cylinder( r=1.4, h =32 ););////
-bend(  } });//
-branch(difference(){);//
-path(union(){);//
 set(H = 10;);//
-process(rotate( [ 0 , 0 , 0 ] )  translate( [ 15 , 30 , -48 ] )    box( 5 , 20 , 50 ););//  box( W , L , 1 );
-process(rotate( [ 0 , 0 , 0 ] )  translate( [ -15 , 30 , -48 ] )    box( 5 , 20 , 50 ););//  box( W , L , 1 );
-path( } #union(){);//
-process(translate( [ 0 , 28 , -10] )  rotate( [ 70 , 0 , 0 ] )  floor() ;);//
+set(R = 56.5 / 2 ;);//
+set(W = t + R ;);//
+branch(difference(){);//
+path(union(){);//
+process(rotate( [ 0 , 0 , A ] )   plug( ););//
+set(cylinder( r = W, h = H ););//
+path( } #union(){);// } union() {
+set(cylinder( r = R, h = H ););//
+process(translate( [ 0, 30 , H/2-usbW/2 ] )  rounded_box( usb , 1 ););//
+set();//
 bend(  } });//
 end( });//
+
+input(module plug( pos=[0,0,45]  )  {);//plug( pos=[0,0,35] )
+set(R = 22/2 ;);//
+set(L = 10; );//
+set(H = 55;);//
+set(ROT= -20 ;);//
+set(ZOF= -5 ;);//
+process(translate( pos  ));//
+branch(difference(){);//
+path(union(){);//
+set(cylinder( r = R+t, h = L ););//
+process(rotate( [ 0, ROT, 0 ])  translate( [ (R+1.5*t) , 0 , -H+L + ZOF ] )  cylinder( r = t, h = H ););//
+path( } #union(){);//
+set(cylinder( r = R, h = L ););//
+bend(  } });//
+end( });//
+set(/* ============================================================================= */);//
+set(/* ============================================================================= */);//
+set(/* ============================================================================= */);//
 process();//BOOKstand() ;
 process();//rotate( [ 180 , 0 , 0 ] )  cover ( );
 
@@ -133,4 +126,4 @@ set(echo("------------------------"););//
 ;    ChargerBase.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 4294966720 636 2006 1150 48 179   782   4294966618    SCAD.key  0
+; 514 538 1365 1423 24 209   706   4294966349    SCAD.key  0
