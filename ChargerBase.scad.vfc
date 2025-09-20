@@ -2,63 +2,85 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : ChargerBase.scad.vfc
-;  File Date : 06:34:38 PM - 16:Sep:2025
+;  File Date : 01:40:56 PM - 20:Sep:2025
 
 event(include <..\SCAD_Modules\modules.scad>);//FILE: ..\SCAD_Modules\modules.scad.vfc
 end();//
 branch();//
 path();//
 set(thick = 2;);//
-set(t = 3; );//
+set(t = 1.8;);//
 set();//
 set();//
 set();//
 path();//
-set(usbL = 10;);//
-set(usbD = 30;);//
-set(usbW = 4;);//
+set(usbL = 14;);//
+set(usbD = 35;);//
+set(usbW = 7 ;);//
 set(usb = [ usbL , usbD ,  usbW ];);//
 bend();//
 end();//
-loop(for  (A= [ 0:120:300 ]) {);//
 process(base( A  ););//
-lend( } );//
 end();//
 
 input(module ballsock(  T = [ 0, 8, 0 ] , R = [ 90, 0, 0 ] ) {);//
 process(translate( [ 0 , 8, 0 ] )  rotate( [90, 0, 0 ])   import( "ball_socket.stl" ););//
-end(} );//
-process(translate( [ 50, 0 , 0 ] ));//
-process(  ballsock(););//
+end(});//
+process();//translate( [ 50, 0 , 0 ] )
 
-input(module base( A = 0  ) {);// 
+input(module ring_holder (  ) {);//
 set(L = 52;);//
 set(D = 10;);//
-set(H = 10;);//
-set(R = 56.5 / 2 ;);//
+set(H = 8;);//
+set(R = 57.5 / 2 ;);//
 set(W = t + R ;);//
 branch(difference(){);//
 path(union(){);//
-process(rotate( [ 0 , 0 , A ] )   plug( ););//
 set(cylinder( r = W, h = H ););//
 path( } #union(){);// } union() {
 set(cylinder( r = R, h = H ););//
-process(translate( [ 0, 30 , H/2-usbW/2 ] )  rounded_box( usb , 1 ););//
+process(translate( [ 0, 30 , H/2-usbW/2+1 ] )  rounded_box( usb , 1 ););//
+set();//
+bend(  } });//
+end( });//
+process();//  ballsock();
+
+input(module base(    ) {);// 
+set(L = 52;);//
+set(D = 10;);//
+set(H = 8;);//
+set(R = 57.5 / 2 ;);//
+set(W = t + R ;);//
+set(ANG = 8 ;);//
+branch(difference(){);//
+path(union(){);//
+loop(for  (A= [ 0:120:300 ]) {);//
+branch(if( A == 0 ));//
+path( {);//
+process(rotate( [ 0 , 0 , A ] )   plug(  72 ););//
+path(} else {);//
+process(rotate( [ 0 , 0 , A ] )   plug(  64 ););//
+bend( });//
+lend( });//
+set(rotate( [ 0 , ANG, 0 ]) cylinder( r = W, h = H ););//
+path( } #union(){);// } union() {
+set(rotate( [ 0 , ANG, 0 ]) translate( [0,0,-1] )  cylinder( r = R, h = H+1.1 ););//
+process(rotate( [ 0 , ANG, 0 ])  translate( [ 0, 30 , H/2-usbW/2+1 ] )  rounded_box( usb , 1 ););//
 set();//
 bend(  } });//
 end( });//
 
-input(module plug( pos=[0,0,45]  )  {);//plug( pos=[0,0,35] )
+input(module plug( H = 64  )  {);//plug( pos=[0,0,35] )
 set(R = 22/2 ;);//
-set(L = 10; );//
-set(H = 55;);//
-set(ROT= -20 ;);//
-set(ZOF= -5 ;);//
+set(L = 2.8;);//
+set(ROT= -14 ;);//
+set(ZOF= -3 ;);//
+generic(pos=[0,0,65] ;);// 
 process(translate( pos  ));//
 branch(difference(){);//
 path(union(){);//
 set(cylinder( r = R+t, h = L ););//
-process(rotate( [ 0, ROT, 0 ])  translate( [ (R+1.5*t) , 0 , -H+L + ZOF ] )  cylinder( r = t, h = H ););//
+process(rotate( [ 0, ROT, 0 ])  translate( [ (R+1.5*t) , 0 , -H+L + ZOF ] )  cylinder( r = 3, h = H ););//
 path( } #union(){);//
 set(cylinder( r = R, h = L ););//
 bend(  } });//
@@ -126,4 +148,4 @@ set(echo("------------------------"););//
 ;    ChargerBase.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 514 538 1365 1423 24 209   706   4294966349    SCAD.key  0
+; 561 199 1228 1257 24 108   531   4294966246    SCAD.key  0

@@ -2,17 +2,16 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : phone.scad.vfc
-;  File Date : 07:28:31 PM - 20:Feb:2025
+;  File Date : 01:56:48 PM - 20:Sep:2025
 
-
-input(include <C:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>);//
-event(include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>);//
+event(include <..\SCAD_Modules\modules.scad>);//
 event(use <strap.scad>);//////FILE:.strap.scad.vfc
 end();//
 set(R = 7;);//
 set(phoneH  = 8;);//
 set(phoneDIM = [ 70.2 , 146. , phoneH  ] ;);//
-process(% translate( [ 0 , 0 , 50] )  phone(););//
+process();//% translate( [ 0 , 0 , 50] )  phone();
+end();//
 
 input(module phone( ) {);//
 set(scrDIM = [ 29 , 44 , 12  ] ;);//
@@ -26,15 +25,19 @@ process(color("yellow")  translate( cameraLOC ) cam(););//color("yellow")  trans
 process(color("blue")  translate( [0, 0 ,  6 ] )  rounded_box( phoneDIM - scrMARGIN ,R  ););//
 set();//
 process(translate( [ 35, 27, phoneH/2-3.5 ] )  box( 10 , 26 ,7  ););//
+set();//
+set( translate([ 8 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//sensor hole
+set( translate([ 23 , 46 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 1 hole
+set( translate([ 23 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 2 hole
 path(} union() {);//
 bend(});//
 end( });//
 
 input(module cam( ) {);//
-set(cameraDIM =[20 , 49. , 20 ] ;);//
-process(  rounded_box( cameraDIM , R  ););//
-process(translate( [ -R/2+.5, 17.5 , 0 ] )  box( 2*R , 2*R , 15 ););//
-process(translate( [ R/2-.5, -17.5 , 0 ] )  box( 2*R , 2*R , 15 ););//
+set( cameraDIM =[120 , 49. , 10 ] ;);//
+process(translate([0,0,3])  rounded_box( cameraDIM , R  ););//
+process();//translate( [ -R/2+.5, 17.5 , 0 ] )  box( 2*R , 2*R , 15 );
+process();//translate( [ R/2-.5, -17.5 , 0 ] )  box( 2*R , 2*R , 15 );
 end( });//
 
 input(module charger( R=49.5, H = 10 ) {);//
@@ -43,7 +46,7 @@ end( });//
 process(main( true  ););//main(  );
 process();//main( );
 
-input(module main ( cam= false  ) {);//
+input(module main ( top = false  ) {);//
 set(LeanA = 10;);//
 set(bumperTHICK = 15;);//
 set(bumperDIM = [ 29 , 40 , bumperTHICK ] ;);//
@@ -61,29 +64,19 @@ set(TRcornerLOC  = [ -(bumperX-2) , (bumperY+5) ,  bumperH ] ;);//
 set(TLcornerLOC  = [ (bumperX-2) , (bumperY+5) ,  bumperH ] ;);//
 set();//
 set(strapLOC  = [ 0 ,-5 , -1.  ] ;);//
-branch(if( cam  ));//
-path( {);//
-process(translate( strapLOC  ) rotate([0,0,90]) strap( ););////FILE:.\Funct Builds\Zipper.scad.vfc 
-path(} else {);//
-bend( });//
-branch(if ( cam ));//
-path({);//
-process(translate( [ 16 , 53., bumperH - .2    ] )  box( 40 ,3 ,  3.3 ););//
-path( );//
-bend(});//
 branch(difference() {);//
 path(union()  {);//
-branch(if( cam  ));//
+branch(if( top ));//
 path( {);//
 process(color("white")  translate( TRcornerLOC  )  rounded_box( bumperDIM , R  ););//
 process(color("white")  translate( TLcornerLOC  )  rounded_box( bumperDIM , R  ););//
 set();//
-process();//color("red")  translate( TLcornerLOC + [  2 , -10, 8  ]  )  rounded_box( buttonDIM , 4  );
+process(color("red")  translate( TLcornerLOC + [  2 , -10, 8  ]  )  rounded_box( buttonDIM , 4  ););//
 process();//color("red")  translate( TLcornerLOC + [ 1, -27, 8 ]  )  rounded_box( buttonDIM , 4  );
 set();//
 process( translate( [ 0 , 54 , bumperH ] )  box( 78 , 37 , 4 ););//
 set();//
-set(translate([ -34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true ););//
+set();//translate([ -34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
 set();//translate([ 34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
 set();//
 path(} else {);//
@@ -91,16 +84,15 @@ process(color("white")  translate( BRcornerLOC  )  rounded_box( bumperDIM2 , R  
 process(color("white")  translate( BLcornerLOC  )  rounded_box( bumperDIM2 , R  ););//
 process(translate( [ 0 , -52., bumperH   ] )  box( 40 ,30 , abs(bumperH) ););//
 set();//
-set(translate([ -34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true ););//
-set(translate([ 34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true ););//
+set();//translate([ -34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
+set();//translate([ 34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
 bend(});//
 path(} union() {);//}# union() {
-process(translate( strapLOC  ) rotate([0,0,90]) strap( ););////FILE:.\Funct Builds\Zipper.scad.vfc 
-set( translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=4, h = 15 , center = true ););//sensor hole
+process(//FILE:.\Funct Builds\Zipper.scad.vfc );//translate( strapLOC  ) rotate([0,0,90]) strap( );
 set();//shiftX = 2;
 set();//shiftY = shiftX;
 process(phone(););//
-process(translate( [ 0 , 0 , -6] )  charger(););//
+process();//translate( [ 0 , 0 , -6] )  charger();
 process();//color("white")  translate( [ -(20 - shiftX ) , (50 - shiftY ) ,  4 ] )  rounded_box( DIM ,R  );
 set();//
 process(// speaker hole);//translate( [ -23 , 80, 1.5] ) rotate( [ 0 ,  0 , 20 ] )box( 13 , 30 , 5 );
@@ -110,6 +102,8 @@ process(translate( [ 23 , -80, 1.5] )   rotate( [ 0 ,  0 , 20 ] )box( 13 , 30 , 
 set();//
 set(translate([ -45 , 0 , -10 ]) rotate([ 0 , -LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;);//sloped sides
 set(translate([ 45 , 0 , -10 ]) rotate([ 0 , LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;);//sloped sides
+set();//
+set(translate([0 , 0 , -11 ]) box( 20, 200, 10 ) ;);//make room for charge cable
 bend(} });//
 end( });//
 
@@ -120,4 +114,4 @@ end( });//
 ;    phone.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 632 313 2665 1655 68 108   726   4294966103    SCAD.key  0
+; 164 458 3032 1442 30 148   901   4294966114    SCAD.key  0

@@ -2,54 +2,75 @@ include <..\SCAD_Modules\modules.scad>
 
 
 	thick = 2;
-	t = 3;
+	t = 1.8;
 	
 	
 	
 
-	usbL = 10;
-	usbD = 30;
-	usbW = 4;
+	usbL = 14;
+	usbD = 35;
+	usbW = 7 ;
 	usb = [ usbL , usbD ,  usbW ];
 	
 
-for  (A= [ 0:120:300 ]) {
-	base( A  );
-	}
-
+base( A  );
 
 module ballsock(  T = [ 0, 8, 0 ] , R = [ 90, 0, 0 ] ) {
 	translate( [ 0 , 8, 0 ] )  rotate( [90, 0, 0 ])   import( "ball_socket.stl" );
 	}
-translate( [ 50, 0 , 0 ] )
-ballsock();
-module base( A = 0  ) {
+
+module ring_holder (  ) {
 	L = 52;
 	D = 10;
-	H = 10;
-	R = 56.5 / 2 ;
+	H = 8;
+	R = 57.5 / 2 ;
 	W = t + R ;
 	difference(){
 	union(){
-		rotate( [ 0 , 0 , A ] )   plug( );
 		cylinder( r = W, h = H );
 	} #union(){
 		cylinder( r = R, h = H );
-		translate( [ 0, 30 , H/2-usbW/2 ] )  rounded_box( usb , 1 );
+		translate( [ 0, 30 , H/2-usbW/2+1 ] )  rounded_box( usb , 1 );
 		
 		} }
 	}
-module plug( pos=[0,0,45]  )  {
+
+module base(    ) {
+	L = 52;
+	D = 10;
+	H = 8;
+	R = 57.5 / 2 ;
+	W = t + R ;
+	ANG = 8 ;
+	difference(){
+	union(){
+		for  (A= [ 0:120:300 ]) {
+			if( A == 0 )
+			{
+				rotate( [ 0 , 0 , A ] )   plug(  72 );
+			} else {
+				rotate( [ 0 , 0 , A ] )   plug(  64 );
+				}
+			}
+		
+		rotate( [ 0 , ANG, 0 ]) cylinder( r = W, h = H );
+	} #union(){
+		rotate( [ 0 , ANG, 0 ]) translate( [0,0,-1] )  cylinder( r = R, h = H+1.1 );
+		rotate( [ 0 , ANG, 0 ])  translate( [ 0, 30 , H/2-usbW/2+1 ] )  rounded_box( usb , 1 );
+		
+		} }
+	}
+module plug( H = 64  )  {
 	R = 22/2 ;
-	L = 10;
-	H = 55;
-	ROT= -20 ;
-	ZOF= -5 ;
+	L = 2.8;
+	ROT= -14 ;
+	ZOF= -3 ;
+	pos=[0,0,65] ;
 	translate( pos  )
 	difference(){
 	union(){
 		cylinder( r = R+t, h = L );
-		rotate( [ 0, ROT, 0 ])  translate( [ (R+1.5*t) , 0 , -H+L + ZOF ] )  cylinder( r = t, h = H );
+		rotate( [ 0, ROT, 0 ])  translate( [ (R+1.5*t) , 0 , -H+L + ZOF ] )  cylinder( r = 3, h = H );
 	} #union(){
 		cylinder( r = R, h = L );
 		} }
@@ -106,5 +127,5 @@ module usb(  ) {
 
 
 echo("------------------------");
-//  Export  Date: 06:34:38 PM - 16:Sep:2025...
+//  Export  Date: 01:40:56 PM - 20:Sep:2025...
 

@@ -1,11 +1,11 @@
-include <C:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>
-	include <E:\Users\luisr\OneDrive\Desktop\SCAD_Modules\modules.scad>
-	use <strap.scad>
-	
+include <..\SCAD_Modules\modules.scad>
+use <strap.scad>
+
 R = 7;
 phoneH  = 8;
 phoneDIM = [ 70.2 , 146. , phoneH  ] ;
-% translate( [ 0 , 0 , 50] )  phone();
+
+
 module phone( ) {
 	scrDIM = [ 29 , 44 , 12  ] ;
 	M = 5;
@@ -18,21 +18,25 @@ module phone( ) {
 		color("blue")  translate( [0, 0 ,  6 ] )  rounded_box( phoneDIM - scrMARGIN ,R  );
 		
 		translate( [ 35, 27, phoneH/2-3.5 ] )  box( 10 , 26 ,7  );
+		
+		translate([ 8 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );
+		translate([ 23 , 46 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );
+		translate([ 23 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );
 	} union() {
 		}
 	}
 module cam( ) {
-	cameraDIM =[20 , 49. , 20 ] ;
-	rounded_box( cameraDIM , R  );
-	translate( [ -R/2+.5, 17.5 , 0 ] )  box( 2*R , 2*R , 15 );
-	translate( [ R/2-.5, -17.5 , 0 ] )  box( 2*R , 2*R , 15 );
+	cameraDIM =[120 , 49. , 10 ] ;
+	translate([0,0,3])  rounded_box( cameraDIM , R  );
+	
+	
 	}
 module charger( R=49.5, H = 10 ) {
 	translate([ 0 , 0 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true );
 	}
 main( true  );
 
-module main ( cam= false  ) {
+module main ( top = false  ) {
 	LeanA = 10;
 	bumperTHICK = 15;
 	bumperDIM = [ 29 , 40 , bumperTHICK ] ;
@@ -50,29 +54,19 @@ module main ( cam= false  ) {
 	TLcornerLOC  = [ (bumperX-2) , (bumperY+5) ,  bumperH ] ;
 	
 	strapLOC  = [ 0 ,-5 , -1.  ] ;
-	if( cam  )
-	{
-		translate( strapLOC  ) rotate([0,0,90]) strap( );
-	} else {
-		}
-	if ( cam )
-	{
-		translate( [ 16 , 53., bumperH - .2    ] )  box( 40 ,3 ,  3.3 );
-	
-		}
 	difference() {
 	union()  {
-		if( cam  )
+		if( top )
 		{
 			color("white")  translate( TRcornerLOC  )  rounded_box( bumperDIM , R  );
 			color("white")  translate( TLcornerLOC  )  rounded_box( bumperDIM , R  );
 			
-			
+			color("red")  translate( TLcornerLOC + [  2 , -10, 8  ]  )  rounded_box( buttonDIM , 4  );
 			
 			
 			translate( [ 0 , 54 , bumperH ] )  box( 78 , 37 , 4 );
 			
-			translate([ -34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
+			
 			
 			
 		} else {
@@ -80,16 +74,15 @@ module main ( cam= false  ) {
 			color("white")  translate( BLcornerLOC  )  rounded_box( bumperDIM2 , R  );
 			translate( [ 0 , -52., bumperH   ] )  box( 40 ,30 , abs(bumperH) );
 			
-			translate([ -34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
-			translate([ 34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
+			
+			
 			}
 	} union() {
-		translate( strapLOC  ) rotate([0,0,90]) strap( );
-		translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=4, h = 15 , center = true );
+		//FILE:.\Funct Builds\Zipper.scad.vfc
 		
 		
 		phone();
-		translate( [ 0 , 0 , -6] )  charger();
+		
 		
 		
 		// speaker hole
@@ -99,7 +92,9 @@ module main ( cam= false  ) {
 		
 		translate([ -45 , 0 , -10 ]) rotate([ 0 , -LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;
 		translate([ 45 , 0 , -10 ]) rotate([ 0 , LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;
+		
+		translate([0 , 0 , -11 ]) box( 20, 200, 10 ) ;
 		} }
 	}
-//  Export  Date: 07:28:31 PM - 20:Feb:2025...
+//  Export  Date: 01:56:48 PM - 20:Sep:2025...
 
