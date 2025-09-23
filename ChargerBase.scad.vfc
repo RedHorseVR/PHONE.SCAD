@@ -2,7 +2,7 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : ChargerBase.scad.vfc
-;  File Date : 01:40:56 PM - 20:Sep:2025
+;  File Date : 02:30:04 PM - 20:Sep:2025
 
 event(include <..\SCAD_Modules\modules.scad>);//FILE: ..\SCAD_Modules\modules.scad.vfc
 end();//
@@ -48,7 +48,7 @@ process();//  ballsock();
 input(module base(    ) {);// 
 set(L = 52;);//
 set(D = 10;);//
-set(H = 8;);//
+set(H = 9.5;);//
 set(R = 57.5 / 2 ;);//
 set(W = t + R ;);//
 set(ANG = 8 ;);//
@@ -62,9 +62,10 @@ path(} else {);//
 process(rotate( [ 0 , 0 , A ] )   plug(  64 ););//
 bend( });//
 lend( });//
-set(rotate( [ 0 , ANG, 0 ]) cylinder( r = W, h = H ););//
+set(rotate( [ 0 , ANG, 0 ]) translate( [0,0,-.2] ) cylinder( r = W, h = H+.2 ););//
 path( } #union(){);// } union() {
-set(rotate( [ 0 , ANG, 0 ]) translate( [0,0,-1] )  cylinder( r = R, h = H+1.1 ););//
+set(rotate( [ 0 , ANG, 0 ]) translate( [0,0,.10] )  cylinder( r = R, h = H ););//
+set(rotate( [ 0 , ANG, 0 ]) translate( [0,0,-3] )  cylinder( r = R-1, h = 4););//
 process(rotate( [ 0 , ANG, 0 ])  translate( [ 0, 30 , H/2-usbW/2+1 ] )  rounded_box( usb , 1 ););//
 set();//
 bend(  } });//
@@ -72,8 +73,8 @@ end( });//
 
 input(module plug( H = 64  )  {);//plug( pos=[0,0,35] )
 set(R = 22/2 ;);//
-set(L = 2.8;);//
-set(ROT= -14 ;);//
+set(L = 3;);//
+set(ROT= -16 ;);//
 set(ZOF= -3 ;);//
 generic(pos=[0,0,65] ;);// 
 process(translate( pos  ));//
@@ -148,4 +149,4 @@ set(echo("------------------------"););//
 ;    ChargerBase.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 561 199 1228 1257 24 108   531   4294966246    SCAD.key  0
+; 561 199 1560 1257 58 108   408   4294966241    SCAD.key  0

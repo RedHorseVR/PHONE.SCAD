@@ -2,15 +2,15 @@ include <..\SCAD_Modules\modules.scad>
 use <strap.scad>
 
 R = 7;
-phoneH  = 8;
-phoneDIM = [ 70.2 , 146. , phoneH  ] ;
+phoneH  = 8.4;
+phoneDIM = [ 71 , 146. , phoneH  ] ;
 
 
 module phone( ) {
 	scrDIM = [ 29 , 44 , 12  ] ;
 	M = 5;
 	scrMARGIN  = [ M, M , 0  ] ;
-	cameraLOC = [ 23.2 , 48,  -14 ] ;
+	cameraLOC = [ 23.2 , 48,  -7.4 ] ;
 	difference()
 	union() {
 		rounded_box( phoneDIM , R  );
@@ -19,22 +19,23 @@ module phone( ) {
 		
 		translate( [ 35, 27, phoneH/2-3.5 ] )  box( 10 , 26 ,7  );
 		
-		translate([ 8 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );
+		translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=4, h = 15 , center = true );
 		translate([ 23 , 46 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );
 		translate([ 23 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );
 	} union() {
 		}
 	}
 module cam( ) {
-	cameraDIM =[120 , 49. , 10 ] ;
-	translate([0,0,3])  rounded_box( cameraDIM , R  );
-	
-	
+	cameraDIM =[21 , 50. , 10 ] ;
+	translate([0,0,6])  rounded_box( cameraDIM , R  );
+	translate( [ -R/2, 18.0 ,6 ] )  box( 2*R , 2*R , 10 );
+	translate( [ R/2, -18 , 6] )  box( 2*R , 2*R , 10 );
 	}
 module charger( R=49.5, H = 10 ) {
 	translate([ 0 , 0 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true );
 	}
-main( true  );
+
+main( top = true  );
 
 module main ( top = false  ) {
 	LeanA = 10;
@@ -82,7 +83,7 @@ module main ( top = false  ) {
 		
 		
 		phone();
-		
+		translate( [ 0 , 0 , 0] )  charger();
 		
 		
 		// speaker hole
@@ -96,5 +97,5 @@ module main ( top = false  ) {
 		translate([0 , 0 , -11 ]) box( 20, 200, 10 ) ;
 		} }
 	}
-//  Export  Date: 01:56:48 PM - 20:Sep:2025...
+//  Export  Date: 05:44:20 PM - 22:Sep:2025...
 
