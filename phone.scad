@@ -70,10 +70,11 @@ module main ( top = false  ) {
 			
 			
 			
+			translate( [ 0 , 40., bumperH   ] )  box( 40 , 48 , abs(bumperH) );
 		} else {
 			color("white")  translate( BRcornerLOC  )  rounded_box( bumperDIM2 , R  );
 			color("white")  translate( BLcornerLOC  )  rounded_box( bumperDIM2 , R  );
-			translate( [ 0 , -52., bumperH   ] )  box( 40 ,30 , abs(bumperH) );
+			translate( [ 0 , -45., bumperH   ] )  box( 40 , 48 , abs(bumperH) );
 			
 			
 			
@@ -83,7 +84,14 @@ module main ( top = false  ) {
 		
 		
 		phone();
-		translate( [ 0 , 0 , 0] )  charger();
+		if( top  )
+		{
+			# translate( [ 0 , 0 , -6] )  charger();
+			# translate( [ 0 , 0 , 0] )  charger( 29 );
+		} else {
+			# translate( [ 0 , 0 , -6] )  charger();
+			# translate( [ 0 , 0 , 0] )  charger( 29 );
+			}
 		
 		
 		// speaker hole
@@ -97,5 +105,5 @@ module main ( top = false  ) {
 		translate([0 , 0 , -11 ]) box( 20, 200, 10 ) ;
 		} }
 	}
-//  Export  Date: 05:44:20 PM - 22:Sep:2025...
+//  Export  Date: 05:58:00 PM - 23:Sep:2025...
 

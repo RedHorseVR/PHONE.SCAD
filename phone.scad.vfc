@@ -2,7 +2,7 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : phone.scad.vfc
-;  File Date : 05:44:20 PM - 22:Sep:2025
+;  File Date : 05:58:00 PM - 23:Sep:2025
 
 event(include <..\SCAD_Modules\modules.scad>);//
 event(use <strap.scad>);//////FILE:.strap.scad.vfc
@@ -47,7 +47,7 @@ process();//% translate( [ 0 , 0 , 50] )  phone();
 process(main( top = true  ););//main( top = false );
 process();//main( );
 
-input(module main ( top = false  ) {);//
+input(module main ( top = false  ) {);//module main ( top =  true ) {
 set(LeanA = 10;);//
 set(bumperTHICK = 15;);//
 set(bumperDIM = [ 29 , 40 , bumperTHICK ] ;);//
@@ -80,10 +80,11 @@ set();//
 set();//translate([ -34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
 set();//translate([ 34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
 set();//
+process(translate( [ 0 , 40., bumperH   ] )  box( 40 , 48 , abs(bumperH) ););//
 path(} else {);//
 process(color("white")  translate( BRcornerLOC  )  rounded_box( bumperDIM2 , R  ););//
 process(color("white")  translate( BLcornerLOC  )  rounded_box( bumperDIM2 , R  ););//
-process(translate( [ 0 , -52., bumperH   ] )  box( 40 ,30 , abs(bumperH) ););//
+process(translate( [ 0 , -45., bumperH   ] )  box( 40 , 48 , abs(bumperH) ););//
 set();//
 set();//translate([ -34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
 set();//translate([ 34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
@@ -93,7 +94,14 @@ process(//FILE:.\Funct Builds\Zipper.scad.vfc );//translate( strapLOC  ) rotate(
 set();//shiftX = 2;
 set();//shiftY = shiftX;
 process(phone(););//
-process(translate( [ 0 , 0 , 0] )  charger(););//
+branch(if( top  ));//
+path( { );//
+process(# translate( [ 0 , 0 , -6] )  charger(););//
+process(# translate( [ 0 , 0 , 0] )  charger( 29 ););//
+path(} else { );//
+process(# translate( [ 0 , 0 , -6] )  charger(););//
+process(# translate( [ 0 , 0 , 0] )  charger( 29 ););//
+bend( } );//
 process();//color("white")  translate( [ -(20 - shiftX ) , (50 - shiftY ) ,  4 ] )  rounded_box( DIM ,R  );
 set();//
 process(// speaker hole);//translate( [ -23 , 80, 1.5] ) rotate( [ 0 ,  0 , 20 ] )box( 13 , 30 , 5 );
@@ -115,4 +123,4 @@ end( });//
 ;    phone.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 207 458 1573 1308 37 117   698   4294966165    SCAD.key  0
+; 331 242 1739 1141 89 117   65   4294965245    SCAD.key  0
