@@ -1,0 +1,39 @@
+;  IRL FlowCode Version: Version 10.0
+;  c1995-2015: Visual Flow Coder by 2LResearch
+;
+;  File Name : rec_player_stand.scad.vfc
+;  File Date : 01:49:32 PM - 19:Oct:2025
+
+event(include <..\SCAD_Modules\modules.scad>);//
+end();//
+
+input(module ballsock(  T = [ 0, 8, 0 ] , R = [ 90, 0, 0 ] ) {);//
+process(translate( [ 0 , 8, 0 ] )  rotate( [90, 0, 0 ])   import( "ball_socket.stl" ););//
+end(});//
+process();//  ballsock();
+process(base( A  ););//
+process(translate( [ 25, 0 , 0 ] )  base( A  ););//
+process(translate( [ -25, 0 , 0 ] )  base( A  ););//
+process(translate( [ 0 , 0 , 2.5] )  cube( [ 50 , 50 , 5 ] , center=true ););//
+
+input(module base(    ) {);// 
+set(L = 4*25;);//
+set(T = 5 ;);//
+set(H = .5 * 25;);//
+branch(difference(){);//
+path(union(){);//
+process(translate( [ 0 , -L/2, L - 25 ] )  wedge(T=T,L=L,h = H ););//
+process(color("white")  color("red")  box( T , L , 3*25 ););//
+path( } #union(){);// } union() {
+set();//
+bend(  } });//
+end( });//
+
+
+
+;INSECTA EMBEDDED SESSION INFORMATION
+; 255 16777215 65280 16777088 16711680 13158600 13158600 0 255 255 9895835 6946660 3289650
+;    rec_player_stand.scad   //   ...
+; notepad.exe
+;INSECTA EMBEDDED ALTSESSION INFORMATION
+; 149 672 1218 1066 10 149   606   4294967033    SCAD.key  0

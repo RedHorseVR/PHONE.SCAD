@@ -2,9 +2,9 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : phone.scad.vfc
-;  File Date : 05:58:00 PM - 23:Sep:2025
+;  File Date : 01:16:49 PM - 01:Jan:2026
 
-event(include <..\SCAD_Modules\modules.scad>);//
+event(include <..\SCAD_Modules\modules.scad>);//FILE:..\SCAD_Modules\modules.scad.vfc
 event(use <strap.scad>);//////FILE:.strap.scad.vfc
 end();//
 set(R = 7;);//
@@ -13,6 +13,38 @@ set(phoneDIM = [ 71 , 146. , phoneH  ] ;);//
 process();//% translate( [ 0 , 0 , 50] )  phone();
 end();//
 
+input(module tapered_box(d,r , taper=0) {);///
+process(translate( [ -d[0]/2 , -d[1]/2 , 0 ] ));///
+branch(if(taper == 0) {);///
+path();///
+process(linear_extrude(height = d[2] ));///
+branch(minkowski() {);///
+path();///
+generic(translate([r,r]) square([d[0]-2*r, d[1]-2*r]););///
+generic(circle(r););///
+bend(});///
+path(} else {);///
+branch(hull() {);///
+path();//
+process(linear_extrude(height = 0.01 ));///
+branch(minkowski() {);///
+path();///
+generic(translate([r,r]) square([d[0]-2*r, d[1]-2*r]););///
+generic(circle(r););///
+bend(});///
+process(translate([0, 0, d[2]]));///
+process(linear_extrude(height = 0.01 ));///
+branch(minkowski() {);///
+path();///
+generic(translate([r-taper/2,r-taper/2]) square([d[0]+taper-2*r, d[1]+taper-2*r]););///
+generic(circle(r););///
+bend(});///
+bend(});///
+bend(});///
+end(});//
+process();//translate( [ 0 , 0 , 100] )
+process();//translate( [ 0 , 0 , 90] )  phone() ;
+
 input(module phone( ) {);//
 set(scrDIM = [ 29 , 44 , 12  ] ;);//
 set(M = 5;);//
@@ -20,6 +52,7 @@ set(scrMARGIN  = [ M, M , 0  ] ;);//
 set(cameraLOC = [ 23.2 , 48,  -7.4 ] ;);//
 branch(difference());//
 path( union() {);//
+process(translate( [ 0 , 0 , 10 ] )   tapered_box( phoneDIM , R , 60  ););///
 process( rounded_box( phoneDIM , R  ););//body
 process(color("yellow")  translate( cameraLOC ) cam(););//color("yellow")  translate( cameraLOC )  rounded_box( cameraDIM , R  );
 process(color("blue")  translate( [0, 0 ,  6 ] )  rounded_box( phoneDIM - scrMARGIN ,R  ););//
@@ -41,13 +74,13 @@ process(translate( [ R/2, -18 , 6] )  box( 2*R , 2*R , 10 ););//
 end( });//
 
 input(module charger( R=49.5, H = 10 ) {);//
-set(translate([ 0 , 0 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true ););//
+set(translate([ 0 , -5 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true ););//
 end( });//
 process();//% translate( [ 0 , 0 , 50] )  phone();
-process(main( top = true  ););//main( top = false );
+process( main( top = true  ););//main( top = false );
 process();//main( );
 
-input(module main ( top = false  ) {);//module main ( top =  true ) {
+input(module main ( top = false ) {);//module main ( top = true ) {
 set(LeanA = 10;);//
 set(bumperTHICK = 15;);//
 set(bumperDIM = [ 29 , 40 , bumperTHICK ] ;);//
@@ -90,18 +123,18 @@ set();//translate([ -34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder
 set();//translate([ 34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
 bend(});//
 path(} union() {);//}# union() {
-process(//FILE:.\Funct Builds\Zipper.scad.vfc );//translate( strapLOC  ) rotate([0,0,90]) strap( );
+process(//FILE:.\Funct Builds\Zipper.scad.vfc);//translate( strapLOC  ) rotate([0,0,90]) strap( );
 set();//shiftX = 2;
 set();//shiftY = shiftX;
 process(phone(););//
 branch(if( top  ));//
-path( { );//
-process(# translate( [ 0 , 0 , -6] )  charger(););//
-process(# translate( [ 0 , 0 , 0] )  charger( 29 ););//
-path(} else { );//
-process(# translate( [ 0 , 0 , -6] )  charger(););//
-process(# translate( [ 0 , 0 , 0] )  charger( 29 ););//
-bend( } );//
+path( {);//
+process( translate( [ 0 , 0 , -6] )  charger(););//
+process( translate( [ 0 , 0 , 0] )  charger( 29 ););//
+path(} else {);//
+process( translate( [ 0 , 0 , -6] )  charger(););//
+process( translate( [ 0 , 0 , 0] )  charger( 29 ););//
+bend( });//
 process();//color("white")  translate( [ -(20 - shiftX ) , (50 - shiftY ) ,  4 ] )  rounded_box( DIM ,R  );
 set();//
 process(// speaker hole);//translate( [ -23 , 80, 1.5] ) rotate( [ 0 ,  0 , 20 ] )box( 13 , 30 , 5 );
@@ -123,4 +156,4 @@ end( });//
 ;    phone.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 331 242 1739 1141 89 117   65   4294965245    SCAD.key  0
+; 184 0 2071 2119 70 147   818   4294964482    SCAD.key  0
