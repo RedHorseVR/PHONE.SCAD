@@ -52,8 +52,8 @@ module phone( ) {
 		translate( [ 35, 27, phoneH/2-3.5 ] )  box( 10 , 26 ,7  );
 		
 		translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=4, h = 15 , center = true );//sensor hole
-		translate([ 23 , 46 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 1 hole
-		translate([ 23 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 2 hole
+		translate([ 25 , 48 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 1 hole
+		translate([ 25 , 63 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 2 hole
 	} union() {
 		}
 	}
@@ -68,7 +68,7 @@ module charger( R=49.5, H = 10 ) {
 	}
 //% translate( [ 0 , 0 , 50] )  phone();
 main( top = true  );//main( top = false );
-//main( );
+main( );
 module main ( top = false ) {//module main ( top = true ) {
 	LeanA = 10;
 	bumperTHICK = 15;
@@ -91,21 +91,21 @@ module main ( top = false ) {//module main ( top = true ) {
 	union()  {
 		if( top )
 		{
-			color("white")  translate( TRcornerLOC  )  rounded_box( bumperDIM , R  );
-			color("white")  translate( TLcornerLOC  )  rounded_box( bumperDIM , R  );
+			color("white")  translate( TRcornerLOC  )  smooth_box( bumperDIM , R  );
+			color("white")  translate( TLcornerLOC  )  smooth_box( bumperDIM , R  );
 			
-			color("red")  translate( TLcornerLOC + [  2 , -10, 8  ]  )  rounded_box( buttonDIM , 4  );
-			//color("red")  translate( TLcornerLOC + [ 1, -27, 8 ]  )  rounded_box( buttonDIM , 4  );
+			color("red")  translate( TLcornerLOC + [  2 , -10, 8  ]  )  smooth_box( buttonDIM , 4  );
+			///color("red")  translate( TLcornerLOC + [ 1, -27, 8 ]  )  smooth_box( buttonDIM , 4  );//
 			
-			translate( [ 0 , 54 , bumperH ] )  box( 78 , 37 , 4 );
+			// translate( [ 0 , 54 , bumperH ] )  box( 78 , 37 , 4 );
 			
 			//translate([ -34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
 			//translate([ 34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
 			
-			translate( [ 0 , 40., bumperH   ] )  box( 40 , 48 , abs(bumperH) );
+			translate( [ 0 , 45., bumperH   ] )  box( 40 ,55 , abs(bumperH) );
 		} else {
-			color("white")  translate( BRcornerLOC  )  rounded_box( bumperDIM2 , R  );
-			color("white")  translate( BLcornerLOC  )  rounded_box( bumperDIM2 , R  );
+			color("white")  translate( BRcornerLOC  )  smooth_box( bumperDIM2 , R  );
+			color("white")  translate( BLcornerLOC  )  smooth_box( bumperDIM2 , R  );
 			translate( [ 0 , -45., bumperH   ] )  box( 40 , 48 , abs(bumperH) );
 			
 			//translate([ -34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
@@ -119,10 +119,10 @@ module main ( top = false ) {//module main ( top = true ) {
 		if( top  )
 		{
 			translate( [ 0 , 0 , -6] )  charger();
-			translate( [ 0 , 0 , 0] )  charger( 29 );
+			translate( [ 0 , 0 , 0] )  charger( 35 );
 		} else {
 			translate( [ 0 , 0 , -6] )  charger();
-			translate( [ 0 , 0 , 0] )  charger( 29 );
+			translate( [ 0 , 0 , 0] )  charger( 32);
 			}
 		//color("white")  translate( [ -(20 - shiftX ) , (50 - shiftY ) ,  4 ] )  rounded_box( DIM ,R  );
 		
@@ -131,11 +131,11 @@ module main ( top = false ) {//module main ( top = true ) {
 		//speaker hole//translate( [ 23 , 80, 1.5] )   rotate( [ 0 ,  0 , -20 ] )box( 13 , 30 , 5 );
 		translate( [ 23 , -80, 1.5] )   rotate( [ 0 ,  0 , 20 ] )box( 13 , 30 , 5 );////speaker hole
 		
-		translate([ -45 , 0 , -10 ]) rotate([ 0 , -LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;//sloped sides
-		translate([ 45 , 0 , -10 ]) rotate([ 0 , LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;//sloped sides
+		//sloped sides//translate([ -45 , 0 , -10 ]) rotate([ 0 , -LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;
+		//sloped sides//translate([ 45 , 0 , -10 ]) rotate([ 0 , LeanA , 0 ]) translate([0,0,-15]) box( 20, 200, 50 ) ;
 		
 		translate([0 , 0 , -11 ]) box( 20, 200, 10 ) ;//make room for charge cable
 		} }
 	}
-//  Export  Date: 01:16:49 PM - 01:Jan:2026...
+//  Export  Date: 02:37:54 PM - 18:Jan:2026...
 

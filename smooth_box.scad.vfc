@@ -1,0 +1,56 @@
+;  IRL FlowCode Version: Version 10.0
+;  c1995-2015: Visual Flow Coder by 2LResearch
+;
+;  File Name : smooth_box.scad.vfc
+;  File Date : 02:22:01 PM - 18:Jan:2026
+
+set(R = 7;);//
+set(bumperTHICK = 15;);//
+set(bumperDIM = [ 29 , 40 , bumperTHICK ] ;);//
+process();//color("blue")  translate( [ 0 , 0 , 0] )   rounded_box( bumperDIM , R  );
+process(color("red")  smooth_box( bumperDIM , R   ););//
+end();//
+
+input(module smooth_box(d, r, s=4) {);//smooth_box with consistent dimensions and alignment
+branch(if(s == 0) {);//no edge smoothing, use standard rounded_box
+path();//
+process(translate( [ -d[0]/2 , -d[1]/2 , 0 ] ));//
+process(linear_extrude(height = d[2] ));//
+branch(minkowski() {);//
+path();//
+generic(translate([r,r]) square([d[0]-2*r, d[1]-2*r]););// ////
+generic(circle(r););// ////
+bend(});//
+path(} else {);//use 3D minkowski with dimension and position compensation
+process(translate( [ -d[0]/2 + s , -d[1]/2 + s , s ] ));//compensate for sphere offset
+branch(minkowski() {);//3D minkowski with sphere
+path();//
+process(linear_extrude(height = d[2] - 2*s ));//reduce height for sphere
+branch(minkowski() {);//2D minkowski for corners
+path();//
+generic(translate([r,r]) square([d[0]-2*r-2*s, d[1]-2*r-2*s]););// ////compensate for sphere
+generic(circle(r););// ////
+bend(});//
+generic(sphere(r = s););// ////sphere for edge smoothing
+bend(});//
+bend(});//
+end(});//
+
+input(module rounded_box(d,r) {);//// //////
+process(translate( [ -d[0]/2 , -d[1]/2 , 0 ] ));//
+process(linear_extrude(height = d[2] ));//
+branch(minkowski() {);//// //////
+path();//
+generic(translate([r,r]) square([d[0]-2*r, d[1]-2*r]););// ////
+generic(circle(r););// ////
+bend(});//// //////
+end(});//// //////
+
+
+
+;INSECTA EMBEDDED SESSION INFORMATION
+; 255 16777215 65280 16777088 16711680 13158600 13158600 0 255 255 9895835 6946660 4194304
+;    smooth_box.scad   //   ...
+; notepad.exe
+;INSECTA EMBEDDED ALTSESSION INFORMATION
+; 646 811 1468 1055 5 127   563   4294967255    SCAD.key  0
