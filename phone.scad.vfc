@@ -2,10 +2,11 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : phone.scad.vfc
-;  File Date : 02:37:54 PM - 18:Jan:2026
+;  File Date : 01:15:41 PM - 19:Jan:2026
 
 event(include <..\SCAD_Modules\modules.scad>);//FILE:..\SCAD_Modules\modules.scad.vfc
 event(use <strap.scad>);//////FILE:.strap.scad.vfc
+set($fn=100;);//
 end();//
 set(R = 7;);//
 set(phoneH  = 8.4;);//
@@ -52,7 +53,7 @@ set(scrMARGIN  = [ M, M , 0  ] ;);//
 set(cameraLOC = [ 23.2 , 48,  -7.4 ] ;);//
 branch(difference());//
 path( union() {);//
-process(translate( [ 0 , 0 , 10 ] )   tapered_box( phoneDIM , R , 60  ););///
+process(translate( [ 0 , 0 , 9 ] )   tapered_box( phoneDIM , R , 60  ););///
 process( rounded_box( phoneDIM , R  ););//body
 process(color("yellow")  translate( cameraLOC ) cam(););//color("yellow")  translate( cameraLOC )  rounded_box( cameraDIM , R  );
 process(color("blue")  translate( [0, 0 ,  6 ] )  rounded_box( phoneDIM - scrMARGIN ,R  ););//
@@ -60,8 +61,8 @@ set();//
 process(translate( [ 35, 27, phoneH/2-3.5 ] )  box( 10 , 26 ,7  ););//
 set();//
 set( translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=4, h = 15 , center = true ););//sensor hole
-set( translate([ 25 , 48 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 1 hole
-set( translate([ 25 , 63 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 2 hole
+set( translate([ 23 , 46 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 1 hole
+set( translate([ 23 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 2 hole
 path(} union() {);//
 bend(});//
 end( });//
@@ -74,7 +75,7 @@ process(translate( [ R/2, -18 , 6] )  box( 2*R , 2*R , 10 ););//
 end( });//
 
 input(module charger( R=49.5, H = 10 ) {);//
-set(translate([ 0 , -5 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true ););//
+set(translate([ 0 , -6 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true ););//
 end( });//
 process();//% translate( [ 0 , 0 , 50] )  phone();
 process( main( top = true  ););//main( top = false );
@@ -82,20 +83,21 @@ process(main( ););//
 
 input(module main ( top = false ) {);//module main ( top = true ) {
 set(LeanA = 10;);//
-set(bumperTHICK = 15;);//
-set(bumperDIM = [ 29 , 40 , bumperTHICK ] ;);//
-set(bumperDIM2 = [ 29 ,40 , bumperTHICK ] ;);//
+set(bumperTHICK = 13.5;);//
+set(bumperH = -2.5 ;);//
+set(bumperL = 42;);//
+set(bumperDIM = [ 29 , bumperL , bumperTHICK ] ;);//
+set(bumperDIM2 = [ 29 , bumperL , bumperTHICK ] ;);//
 set(buttonDIM = [ 30 , 9, 5  ] ;);//
 set(bumperMARG = 5;);//
-set(bumperH = -4;);//
-set(bumperX = 21 + bumperMARG ;);//
+set(bumperX = 18 + bumperMARG ;);//
 set(bumperY =57 - 5  ;);//
 set();//
-set(BRcornerLOC  = [ -(bumperX - 2 ) , -(bumperY+4) ,  bumperH ] ;);//
-set(BLcornerLOC  = [ (bumperX - 2 ) , -(bumperY+4) ,  bumperH ] ;);//
+set(BRcornerLOC  = [ -(bumperX  ) , -(bumperY+2) ,  bumperH ] ;);//
+set(BLcornerLOC  = [ (bumperX  ) , -(bumperY+2) ,  bumperH ] ;);//
 set();//
-set(TRcornerLOC  = [ -(bumperX-2) , (bumperY+5) ,  bumperH ] ;);//
-set(TLcornerLOC  = [ (bumperX-2) , (bumperY+5) ,  bumperH ] ;);//
+set(TRcornerLOC  = [ -(bumperX) , (bumperY+3) ,  bumperH ] ;);//
+set(TLcornerLOC  = [ (bumperX) , (bumperY+3) ,  bumperH ] ;);//
 set();//
 set(strapLOC  = [ 0 ,-5 , -1.  ] ;);//
 branch(difference() {);//
@@ -156,4 +158,4 @@ end( });//
 ;    phone.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 742 663 2071 1263 70 147   4294967075   4294963500    SCAD.key  0
+; 262 660 1970 1372 3 96   706   186    SCAD.key  0

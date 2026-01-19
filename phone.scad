@@ -1,5 +1,6 @@
 include <..\SCAD_Modules\modules.scad>//FILE:..\SCAD_Modules\modules.scad.vfc
 use <strap.scad>//////FILE:.strap.scad.vfc
+$fn=100;
 
 R = 7;
 phoneH  = 8.4;
@@ -44,7 +45,7 @@ module phone( ) {
 	cameraLOC = [ 23.2 , 48,  -7.4 ] ;
 	difference()
 	union() {
-		translate( [ 0 , 0 , 10 ] )   tapered_box( phoneDIM , R , 60  );///
+		translate( [ 0 , 0 , 9 ] )   tapered_box( phoneDIM , R , 60  );///
 		rounded_box( phoneDIM , R  );//body
 		color("yellow")  translate( cameraLOC ) cam();//color("yellow")  translate( cameraLOC )  rounded_box( cameraDIM , R  );
 		color("blue")  translate( [0, 0 ,  6 ] )  rounded_box( phoneDIM - scrMARGIN ,R  );
@@ -52,8 +53,8 @@ module phone( ) {
 		translate( [ 35, 27, phoneH/2-3.5 ] )  box( 10 , 26 ,7  );
 		
 		translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=4, h = 15 , center = true );//sensor hole
-		translate([ 25 , 48 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 1 hole
-		translate([ 25 , 63 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 2 hole
+		translate([ 23 , 46 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 1 hole
+		translate([ 23 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 2 hole
 	} union() {
 		}
 	}
@@ -64,27 +65,28 @@ module cam( ) {
 	translate( [ R/2, -18 , 6] )  box( 2*R , 2*R , 10 );
 	}
 module charger( R=49.5, H = 10 ) {
-	translate([ 0 , -5 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true );
+	translate([ 0 , -6 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true );
 	}
 //% translate( [ 0 , 0 , 50] )  phone();
 main( top = true  );//main( top = false );
 main( );
 module main ( top = false ) {//module main ( top = true ) {
 	LeanA = 10;
-	bumperTHICK = 15;
-	bumperDIM = [ 29 , 40 , bumperTHICK ] ;
-	bumperDIM2 = [ 29 ,40 , bumperTHICK ] ;
+	bumperTHICK = 13.5;
+	bumperH = -2.5 ;
+	bumperL = 42;
+	bumperDIM = [ 29 , bumperL , bumperTHICK ] ;
+	bumperDIM2 = [ 29 , bumperL , bumperTHICK ] ;
 	buttonDIM = [ 30 , 9, 5  ] ;
 	bumperMARG = 5;
-	bumperH = -4;
-	bumperX = 21 + bumperMARG ;
+	bumperX = 18 + bumperMARG ;
 	bumperY =57 - 5  ;
 	
-	BRcornerLOC  = [ -(bumperX - 2 ) , -(bumperY+4) ,  bumperH ] ;
-	BLcornerLOC  = [ (bumperX - 2 ) , -(bumperY+4) ,  bumperH ] ;
+	BRcornerLOC  = [ -(bumperX  ) , -(bumperY+2) ,  bumperH ] ;
+	BLcornerLOC  = [ (bumperX  ) , -(bumperY+2) ,  bumperH ] ;
 	
-	TRcornerLOC  = [ -(bumperX-2) , (bumperY+5) ,  bumperH ] ;
-	TLcornerLOC  = [ (bumperX-2) , (bumperY+5) ,  bumperH ] ;
+	TRcornerLOC  = [ -(bumperX) , (bumperY+3) ,  bumperH ] ;
+	TLcornerLOC  = [ (bumperX) , (bumperY+3) ,  bumperH ] ;
 	
 	strapLOC  = [ 0 ,-5 , -1.  ] ;
 	difference() {
@@ -137,5 +139,5 @@ module main ( top = false ) {//module main ( top = true ) {
 		translate([0 , 0 , -11 ]) box( 20, 200, 10 ) ;//make room for charge cable
 		} }
 	}
-//  Export  Date: 02:37:54 PM - 18:Jan:2026...
+//  Export  Date: 01:15:41 PM - 19:Jan:2026...
 
