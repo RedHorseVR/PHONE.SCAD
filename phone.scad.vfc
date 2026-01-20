@@ -2,7 +2,7 @@
 ;  c1995-2015: Visual Flow Coder by 2LResearch
 ;
 ;  File Name : phone.scad.vfc
-;  File Date : 01:15:41 PM - 19:Jan:2026
+;  File Date : 10:36:01 PM - 19:Jan:2026
 
 event(include <..\SCAD_Modules\modules.scad>);//FILE:..\SCAD_Modules\modules.scad.vfc
 event(use <strap.scad>);//////FILE:.strap.scad.vfc
@@ -53,7 +53,7 @@ set(scrMARGIN  = [ M, M , 0  ] ;);//
 set(cameraLOC = [ 23.2 , 48,  -7.4 ] ;);//
 branch(difference());//
 path( union() {);//
-process(translate( [ 0 , 0 , 9 ] )   tapered_box( phoneDIM , R , 60  ););///
+process(translate( [ 0 , 0 , 9. ] )   tapered_box( phoneDIM - [ 7, 7, 0 ] , R , 30  ););///
 process( rounded_box( phoneDIM , R  ););//body
 process(color("yellow")  translate( cameraLOC ) cam(););//color("yellow")  translate( cameraLOC )  rounded_box( cameraDIM , R  );
 process(color("blue")  translate( [0, 0 ,  6 ] )  rounded_box( phoneDIM - scrMARGIN ,R  ););//
@@ -61,8 +61,10 @@ set();//
 process(translate( [ 35, 27, phoneH/2-3.5 ] )  box( 10 , 26 ,7  ););//
 set();//
 set( translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=4, h = 15 , center = true ););//sensor hole
-set( translate([ 23 , 46 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 1 hole
-set( translate([ 23 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 2 hole
+set();//
+set( translate([ 22 , 61.5 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 2 hole
+set( translate([ 22 , 47.5 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 1 hole
+set( translate([ 22 , 33.5 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true ););//camera 2 hole
 path(} union() {);//
 bend(});//
 end( });//
@@ -75,7 +77,7 @@ process(translate( [ R/2, -18 , 6] )  box( 2*R , 2*R , 10 ););//
 end( });//
 
 input(module charger( R=49.5, H = 10 ) {);//
-set(translate([ 0 , -6 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true ););//
+set(translate([ 0 , -5 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true ););//
 end( });//
 process();//% translate( [ 0 , 0 , 50] )  phone();
 process( main( top = true  ););//main( top = false );
@@ -83,11 +85,11 @@ process(main( ););//
 
 input(module main ( top = false ) {);//module main ( top = true ) {
 set(LeanA = 10;);//
-set(bumperTHICK = 13.5;);//
+set(bumperTHICK = 15;);//
 set(bumperH = -2.5 ;);//
-set(bumperL = 42;);//
-set(bumperDIM = [ 29 , bumperL , bumperTHICK ] ;);//
-set(bumperDIM2 = [ 29 , bumperL , bumperTHICK ] ;);//
+set(bumperL = 44;);//
+set(bumperW = 34;);//
+set(bumperDIM = [ bumperW , bumperL , bumperTHICK ] ;);//
 set(buttonDIM = [ 30 , 9, 5  ] ;);//
 set(bumperMARG = 5;);//
 set(bumperX = 18 + bumperMARG ;);//
@@ -117,8 +119,8 @@ set();//translate([ 34 , 57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( 
 set();//
 process(translate( [ 0 , 45., bumperH   ] )  box( 40 ,55 , abs(bumperH) ););//
 path(} else {);//
-process(color("white")  translate( BRcornerLOC  )  smooth_box( bumperDIM2 , R  ););//
-process(color("white")  translate( BLcornerLOC  )  smooth_box( bumperDIM2 , R  ););//
+process(color("white")  translate( BRcornerLOC  )  smooth_box( bumperDIM , R  ););//
+process(color("white")  translate( BLcornerLOC  )  smooth_box( bumperDIM , R  ););//
 process(translate( [ 0 , -45., bumperH   ] )  box( 40 , 48 , abs(bumperH) ););//
 set();//
 set();//translate([ -34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
@@ -158,4 +160,4 @@ end( });//
 ;    phone.scad   //   ...
 ; notepad.exe
 ;INSECTA EMBEDDED ALTSESSION INFORMATION
-; 262 660 1970 1372 3 96   706   186    SCAD.key  0
+; 242 517 973 1409 59 96   437   4294966345    SCAD.key  0

@@ -45,7 +45,7 @@ module phone( ) {
 	cameraLOC = [ 23.2 , 48,  -7.4 ] ;
 	difference()
 	union() {
-		translate( [ 0 , 0 , 9 ] )   tapered_box( phoneDIM , R , 60  );///
+		translate( [ 0 , 0 , 9. ] )   tapered_box( phoneDIM - [ 7, 7, 0 ] , R , 30  );///
 		rounded_box( phoneDIM , R  );//body
 		color("yellow")  translate( cameraLOC ) cam();//color("yellow")  translate( cameraLOC )  rounded_box( cameraDIM , R  );
 		color("blue")  translate( [0, 0 ,  6 ] )  rounded_box( phoneDIM - scrMARGIN ,R  );
@@ -53,8 +53,10 @@ module phone( ) {
 		translate( [ 35, 27, phoneH/2-3.5 ] )  box( 10 , 26 ,7  );
 		
 		translate([ 8 , 61 , -7 ])  cylinder( r1 = 10, r2=4, h = 15 , center = true );//sensor hole
-		translate([ 23 , 46 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 1 hole
-		translate([ 23 , 61 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 2 hole
+		
+		translate([ 22 , 61.5 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 2 hole
+		translate([ 22 , 47.5 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 1 hole
+		translate([ 22 , 33.5 , -7 ])  cylinder( r1 = 20, r2=4, h = 15 , center = true );//camera 2 hole
 	} union() {
 		}
 	}
@@ -65,18 +67,18 @@ module cam( ) {
 	translate( [ R/2, -18 , 6] )  box( 2*R , 2*R , 10 );
 	}
 module charger( R=49.5, H = 10 ) {
-	translate([ 0 , -6 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true );
+	translate([ 0 , -5 , 0 ]) rotate([ 0 , 0 , 0 ]) cylinder( r = R, h =H , center = true );
 	}
 //% translate( [ 0 , 0 , 50] )  phone();
 main( top = true  );//main( top = false );
 main( );
 module main ( top = false ) {//module main ( top = true ) {
 	LeanA = 10;
-	bumperTHICK = 13.5;
+	bumperTHICK = 15;
 	bumperH = -2.5 ;
-	bumperL = 42;
-	bumperDIM = [ 29 , bumperL , bumperTHICK ] ;
-	bumperDIM2 = [ 29 , bumperL , bumperTHICK ] ;
+	bumperL = 44;
+	bumperW = 34;
+	bumperDIM = [ bumperW , bumperL , bumperTHICK ] ;
 	buttonDIM = [ 30 , 9, 5  ] ;
 	bumperMARG = 5;
 	bumperX = 18 + bumperMARG ;
@@ -106,8 +108,8 @@ module main ( top = false ) {//module main ( top = true ) {
 			
 			translate( [ 0 , 45., bumperH   ] )  box( 40 ,55 , abs(bumperH) );
 		} else {
-			color("white")  translate( BRcornerLOC  )  smooth_box( bumperDIM2 , R  );
-			color("white")  translate( BLcornerLOC  )  smooth_box( bumperDIM2 , R  );
+			color("white")  translate( BRcornerLOC  )  smooth_box( bumperDIM , R  );
+			color("white")  translate( BLcornerLOC  )  smooth_box( bumperDIM , R  );
 			translate( [ 0 , -45., bumperH   ] )  box( 40 , 48 , abs(bumperH) );
 			
 			//translate([ -34 , -57 , -4 ]) rotate([ 0 , 90-LeanA  + 8 , 0 ]) cylinder( r = 6, h = 4 , center = true );
@@ -139,5 +141,5 @@ module main ( top = false ) {//module main ( top = true ) {
 		translate([0 , 0 , -11 ]) box( 20, 200, 10 ) ;//make room for charge cable
 		} }
 	}
-//  Export  Date: 01:15:41 PM - 19:Jan:2026...
+//  Export  Date: 10:36:01 PM - 19:Jan:2026...
 
